@@ -3,15 +3,13 @@ import "./App.css";
 import {
   getMovies,
   createMovie,
-  updateMovie,
   deleteMovie,
 } from "./api/movies";
+import MovieForm from "./components/MovieForm";
+import MovieList from "./components/MovieList";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [newTitle, setNewTitle] = useState("");
-  const [newReview, setNewReview] = useState("");
-  const [newRating, setNewRating] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -33,22 +31,11 @@ function App() {
     }
   };
 
-  const handleAddMovie = async (e) => {
-    e.preventDefault();
-    if (!newTitle.trim()) return;
-
+  const handleAddMovie = async (movieDatae) => {
     try {
-      const movie = await createMovie({
-        title: newTitle,
-        review: newReview,
-        rating: newRating ? Number(newRating) : undefined,
-      });
-
-      setMovies([movie, ...movies]);
-      setNewTitle("");
-      setNewReview("");
-      setNewRating("");
-    } catch (err) {
+      const movie = await createMovie(movieDatae);
+      setMovies((prev) => [movie, ...prev]);
+     } catch (err) {
       console.error("Error creating movie:", err);
       setError(err.message || "Could not add movie");
     }
@@ -90,76 +77,14 @@ function App() {
       <main className="main-content">
         <section className="task-section">
           <h2>Add a movie or show</h2>
-
-          <form onSubmit={handleAddMovie} className="add-task-form">
-            <input
-              className="task-input"
-              type="text"
-              placeholder="Title (required)"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-            />
-            <input
-              className="task-input"
-              type="text"
-              placeholder="Short review"
-              value={newReview}
-              onChange={(e) => setNewReview(e.target.value)}
-            />
-            <input
-              className="task-input"
-              type="number"
-              min="0"
-              max="10"
-              placeholder="Rating /10"
-              value={newRating}
-              onChange={(e) => setNewRating(e.target.value)}
-            />
-            <button type="submit" className="add-button">
-              Add
-            </button>
-          </form>
-
-          {movies.length === 0 ? (
-            <div className="empty-state">
-              <p>No entries yet. Add your first movie above</p>
-            </div>
-          ) : (
-            <ul className="task-list">
-              {movies.map((movie) => (
-                <li key={movie._id} className="task-item">
-                  <div className="task-content">
-                    <div className="task-title">{movie.title}</div>
-                    {movie.review && (
-                      <div className="task-meta">
-                        <span>{movie.review}</span>
-                      </div>
-                    )}
-                    {typeof movie.rating === "number" && (
-                      <div className="task-meta">
-                        <span>⭐ {movie.rating}/10</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <button
-                    type="button"
-                    className="delete-button"
-                    onClick={() => handleDeleteMovie(movie._id)}
-                    aria-label="Delete movie"
-                  >
-                    ✕
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+          <MovieForm onAdd={handleAddMovie} />
+          <MovieList movies={movies} onDelete={handleDeleteMovie} />
         </section>
 
         <section className="timer-section">
           <h2>About app</h2>
           <p>
-            Mvie and TV show journal. You can log what
+            Movie and TV show journal. You can log what
             you’ve watched, write a review, and give it a rating
           </p>
         </section>
