@@ -1,5 +1,5 @@
 const express = require("express");
-const Movie = require("../models/Movie");
+const Movie = require("../models/movie");
 
 const router = express.Router();
 
@@ -40,16 +40,6 @@ router.get("/search", async (req, res) => {
   } catch (err) {
     console.error("Error calling OMDb:", err);
     res.status(500).json({ error: "Failed to fetch movie from OMDb" });
-  }
-});
-
-router.get("/", async (req, res) => {
-  try {
-    const movies = await Movie.find().sort({ createdAt: -1 });
-    res.status(200).json(movies);
-  } catch (err) {
-    console.error("Error fetching movies:", err);
-    res.status(500).json({ error: "Server error" });
   }
 });
 
