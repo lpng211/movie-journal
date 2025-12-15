@@ -16,6 +16,7 @@ export async function createMovie(movieData) {
     body: JSON.stringify(movieData),
   });
 
+  //Backend error message if available
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
     throw new Error(data.error || "Could not create movie");
