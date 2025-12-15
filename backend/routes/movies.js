@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/search", async (req, res) => {
   const { title } = req.query;
 
+  //No empty search
   if (!title || !title.trim()) {
     return res.status(400).json({ error: "Title query is required" });
   }
@@ -44,6 +45,7 @@ router.get("/search", async (req, res) => {
   }
 });
 
+//Gets all saved movies
 router.get("/", async (req, res) => {
   try {
     const movies = await Movie.find().sort({ createdAt: -1 });
