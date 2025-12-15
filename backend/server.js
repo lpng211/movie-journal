@@ -11,9 +11,11 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());          
 app.use(express.json());  
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ Connected to MongoDB"))
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("✅ Connected to MongoDB");
+    app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+  })
   .catch((err) => console.error("❌ MongoDB error:", err));
 
 app.get("/", (req, res) => {
