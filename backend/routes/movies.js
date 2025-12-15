@@ -3,6 +3,7 @@ const Movie = require("../models/movie");
 
 const router = express.Router();
 
+//Advanced feature: OMDb search
 router.get("/search", async (req, res) => {
   const { title } = req.query;
 
@@ -53,6 +54,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Creates a new movie entry
 router.post("/", async (req, res) => {
   try {
     const { title, review, rating, watchedAt } = req.body;
@@ -75,6 +77,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+//Updates existing entry
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -95,6 +98,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+//Deletes a movie entry by id
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
