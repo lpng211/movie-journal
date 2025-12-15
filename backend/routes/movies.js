@@ -3,6 +3,56 @@ const Movie = require("../models/Movie");
 
 const router = express.Router();
 
+router.get("/search", async (req, res) => {
+  const { title } = req.query;
+
+  if (!title || !title.trim()) {
+    return res.status(400).json({ error: "Title query is required" });
+  }
+
+  try {
+    const apiKey = process.env.OMDB_API_KEY;
+    if (!apiKey) {
+      return res
+        .status(500)
+        .json({ error: "API key is not set on the server" });
+    }
+
+    const url = `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodeURIComponent(
+      title.trim()
+    )}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.Response === "False") {
+      return res.status(404).json({ error: data.Error || "Movie not found" });
+    }
+
+    res.json({
+      title: data.Title,
+      year: data.Year,
+      poster: data.Poster,
+      plot: data.Plot,
+      runtime: data.Runtime,
+      imdbRating: data.imdbRating,
+    });
+  } catch (err) {
+    console.error("Error calling OMDb:", err);
+    res.status(500).json({ error: "Failed to fetch movie from OMDb" });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const movies = await Movie.find().sort({ createdAt: -1 });
+    res.status(200).json(movies);
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     const movies = await Movie.find().sort({ createdAt: -1 });
