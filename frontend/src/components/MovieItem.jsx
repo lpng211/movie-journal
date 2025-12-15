@@ -1,15 +1,15 @@
 function MovieItem({ movie, onDelete }) {
   return (
-    <li className= "task-item" >
-      <div className="task-content" >
-        <div className="task-title">{movie.title}</div>
+    <li className= "movie-item" >
+      <div className="movie-content" >
+        <div className="movie-title">{movie.title}</div>
         {movie.review && (
-          <div className="task-meta">
+          <div className="movie-meta">
             <span>{movie.review}</span>
           </div>
         )}
         {typeof movie.rating === "number" && (
-          <div className="task-meta">
+          <div className="movie-meta">
             <span>⭐ {movie.rating}/10</span>
           </div>
         )}

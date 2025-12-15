@@ -7,6 +7,7 @@ function OmdbSearch({ onPickTitle }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  //Searches OMDb through backend route
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -24,6 +25,7 @@ function OmdbSearch({ onPickTitle }) {
     }
   };
 
+  //Sends title to App so MovieForm prefills
   const handleUseTitle = () => {
     if (result && result.title) {
       onPickTitle(result.title);
@@ -33,9 +35,9 @@ function OmdbSearch({ onPickTitle }) {
   return (
     <div className="omdb-search">
       <h3>Search with OMDb</h3>
-      <form onSubmit={handleSearch} className="add-task-form">
+      <form onSubmit={handleSearch} className="movie-form">
         <input
-          className="task-input"
+          className="movie-input"
           type="text"
           placeholder="Search by title"
           value={query}

@@ -1,3 +1,4 @@
+//Backend URL
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001"
 
 export async function getMovies() {
@@ -49,6 +50,7 @@ export async function deleteMovie(id) {
   return res.json();
 }
 
+//Calls backend /search route
 export async function searchByTitle(title) {
   const res = await fetch(
     `${API_BASE_URL}/api/movies/search?title=${encodeURIComponent(title)}`

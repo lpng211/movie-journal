@@ -1,6 +1,7 @@
 import MovieItem from './MovieItem';
 
 function MovieList({ movies, onDelete }) {
+  //Empty state when database returns no items
   if (!movies || movies.length === 0) {
     return (
       <div className="empty-state">
@@ -10,7 +11,7 @@ function MovieList({ movies, onDelete }) {
   }
 
   return (
-    <ul className="task-list">
+    <ul className="movie-list">
       {movies.map((movie) => (
         <MovieItem key={movie._id} movie={movie} onDelete={onDelete}
         />

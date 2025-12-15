@@ -6,6 +6,7 @@ function MovieForm({ onAdd, prefillTitle }) {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
 
+    //Picks a title from OMDb fills it into the form
     useEffect(() => {
     if (prefillTitle) {
       setTitle(prefillTitle);
@@ -16,15 +17,17 @@ function MovieForm({ onAdd, prefillTitle }) {
     e.preventDefault();
     if (!title.trim()) return;
 
+    //Lets parent handle API call and state update
     onAdd({ title, review, rating: rating ? Number(rating) : undefined });
 
+    //Resets form after submit
     setTitle("");
     setReview("");
     setRating("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-task-form">
+    <form onSubmit={handleSubmit} className="movie-form">
       <input
         type="text"
         placeholder="Movie Title"
@@ -32,14 +35,14 @@ function MovieForm({ onAdd, prefillTitle }) {
         onChange={(e) => setTitle(e.target.value)}
       />
       <input
-        className="task-input"
+        className="movie-input"
         type="text"
         placeholder="Review"
         value={review}
         onChange={(e) => setReview(e.target.value)}
       />
       <input
-        className="task-input"
+        className="movie-input"
         type="number"
         min="0"
         max="10"

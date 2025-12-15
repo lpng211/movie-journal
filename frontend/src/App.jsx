@@ -13,8 +13,10 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  //Passed into MovieForm when "Use this title" is clicked
   const [selectedTitleFromSearch, setSelectedTitleFromSearch] = useState("");
 
+  //Loads saved entries on load
   useEffect(() => {
     loadMovies();
   }, []);
@@ -77,7 +79,7 @@ function App() {
       )}
 
       <main className="main-content">
-        <section className="task-section">
+        <section className="journal-section">
           <h2>Add a movie or show</h2>
           <MovieForm onAdd={handleAddMovie} prefillTitle={selectedTitleFromSearch} />
           <hr style={{ margin: "1.5rem 0" }} />
@@ -88,7 +90,7 @@ function App() {
           <MovieList movies={movies} onDelete={handleDeleteMovie} />
         </section>
 
-        <section className="timer-section">
+        <section className="sidebar-section">
           <h2>About app</h2>
           <p>
             Movie and TV show journal. Log what you’ve watched, write a review, and give it a rating.
