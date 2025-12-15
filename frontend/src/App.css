@@ -6,14 +6,15 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1f2933 0%, #111827 100%);
   min-height: 100vh;
+  color: #e5e7eb;
 }
 
 .app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
 }
 
 .app.loading {
@@ -22,12 +23,12 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  color: white;
+  color: slategray;
 }
 
 .spinner {
-  border: 4px solid rgba(4, 3, 3, 0.3);
-  border-top: 4px solid white;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid slategray;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -42,35 +43,34 @@ body {
 
 header {
   text-align: center;
-  color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   margin-bottom: 0.5rem;
 }
 
 header p {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .error-banner {
-  background: #ff4444;
-  color: white;
+  background: #7f1d1d;
+  color: mistyrose;
   padding: 1rem;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .error-banner button {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   border: none;
-  color: white;
-  padding: 0.5rem 1rem;
+  color: mistyrose;
+  padding: 0.4rem 0.75rem;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -89,16 +89,23 @@ header p {
 
 .task-section,
 .timer-section {
-  background: white;
+  background: #1f2933;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
 .task-section h2,
 .timer-section h2 {
-  margin-bottom: 1.5rem;
-  color: #333;
+  margin-bottom: 1rem;
+  color: #f9fafb;
+  letter-spacing: 0.2px;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .add-task-form {
@@ -109,22 +116,24 @@ header p {
 
 .task-input {
   flex: 1;
-  padding: 0.75rem;
-  border: 2px solid #ddd;
+  padding: 0.7rem;
+  border: 2px solid #374151;
   border-radius: 8px;
   font-size: 1rem;
+  background: #111827;
+  color: #e5e7eb;
 }
 
 .task-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #6366f1;
 }
 
 .add-button {
-  background: #667eea;
+  background: #6366f1;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.7rem 1.4rem;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
@@ -132,18 +141,19 @@ header p {
 }
 
 .add-button:hover {
-  background: #5568d3;
+  background: #4f46e5;
 }
 
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.9rem;
+  margin-top: 0.75rem;
 }
 
 .empty-state {
   text-align: center;
-  color: #999;
+  color: #9ca3af;
   padding: 2rem;
 }
 
@@ -151,32 +161,31 @@ header p {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  border: 2px solid #eee;
+  padding: 1.05rem;
+  border: 2px solid #374151;
   border-radius: 8px;
   transition: all 0.2s;
   cursor: pointer;
-  color: #333;
+  color: #e5e7eb;
 }
 
 .task-item:hover {
-  border-color: #667eea;
-  background: #f8f9ff;
+  border-color: #6366f1;
+  background: #0f172a;
 }
 
 .task-item.active {
-  border-color: #667eea;
-  background: #f0f4ff;
+  border-color: #6366f1;
+  background: #0b1220;
 }
 
-.task-item.completed .task-title {
-  text-decoration: line-through;
-  opacity: 0.6;
+.task-item.completed {
+  opacity: 0.8;
 }
 
 .task-checkbox {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   cursor: pointer;
 }
 
@@ -187,61 +196,73 @@ header p {
 .task-title {
   font-size: 1rem;
   margin-bottom: 0.25rem;
-  color: #333;
+  color: #f9fafb;
 }
 
 .task-meta {
   display: flex;
   gap: 0.5rem;
   font-size: 0.875rem;
-}
-
-.pomodoro-badge {
-  background: #fff3e0;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+  line-height: 1.3;
 }
 
 .delete-button {
   background: none;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   cursor: pointer;
   opacity: 0.5;
-  transition: opacity 0.2s;
+  color: #e5e7eb;
 }
 
 .delete-button:hover {
   opacity: 1;
 }
 
+.omdb-search {
+  margin-top: 0.25rem;
+}
+
+.omdb-search h3 {
+  color: #f9fafb;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.search-result-card {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid #374151;
+  background: #0b1220;
+}
+
+.search-result-card img {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.search-result-card h4 {
+  color: #f9fafb;
+  margin-bottom: 0.35rem;
+}
+
+.search-result-card p {
+  color: #9ca3af;
+  margin-top: 0.35rem;
+  line-height: 1.35;
+}
+
 .no-task-selected {
   text-align: center;
-  color: #999;
+  color: #9ca3af;
   padding: 3rem 1rem;
-  font-size: 1.1rem;
-}
-
-.active-task-display {
-  background: #f0f4ff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.active-task-display h3 {
-  color: #667eea;
-  margin: 0.5rem 0;
-}
-
-.pomodoro-count {
-  color: #666;
-  font-size: 0.875rem;
-}
-
-.pomodoro-timer {
-  text-align: center;
+  font-size: 1.05rem;
 }
 
 .timer-mode {
@@ -259,10 +280,10 @@ header p {
 }
 
 .timer-display {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin: 2rem 0;
-  color: #333;
+  color: #f9fafb;
   font-variant-numeric: tabular-nums;
 }
 
@@ -274,36 +295,35 @@ header p {
 }
 
 .control-button {
-  padding: 0.75rem 2rem;
+  padding: 0.7rem 1.8rem;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 .control-button.primary {
-  background: #667eea;
+  background: #6366f1;
   color: white;
 }
 
 .control-button.primary:hover {
-  background: #5568d3;
+  background: #4f46e5;
 }
 
 .control-button.secondary {
-  background: #eee;
-  color: #666;
+  background: #374151;
+  color: #e5e7eb;
 }
 
 .control-button.secondary:hover {
-  background: #ddd;
+  background: #4b5563;
 }
 
 .timer-progress {
   height: 8px;
-  background: #eee;
+  background: #374151;
   border-radius: 4px;
   overflow: hidden;
 }

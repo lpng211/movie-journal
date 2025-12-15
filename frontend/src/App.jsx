@@ -91,8 +91,7 @@ function App() {
         <section className="timer-section">
           <h2>About app</h2>
           <p>
-            Movie and TV show journal. Log what
-            you’ve watched, write a review, and give it a rating
+            Movie and TV show journal. Log what you’ve watched, write a review, and give it a rating.
           </p>
         </section>
       </main>
