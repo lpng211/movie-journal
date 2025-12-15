@@ -27,8 +27,9 @@ Movie and TV show journal to record your opinions as you watch them. Log what yo
 3. cd frontend, npm install, npm run dev
 
 ## Environment variables needed:
-MONGODB_URI=<your connection string here>
-OMDB_API_KEY=<your api key>
+MONGODB_URI=your connection string here
+
+OMDB_API_KEY=your api key
 
 ## Screenshots or demo link
 https://drive.google.com/file/d/1_DWsncuAC0JZ3jzDeSZa-xIhdpkZ9sz_/view?usp=sharing
