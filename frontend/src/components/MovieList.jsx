@@ -1,7 +1,7 @@
 import MovieItem from './MovieItem';
 
 function MovieList({ movies, onDelete }) {
-  if (tasks.length === 0) {
+  if (!movies || movies.length === 0) {
     return (
       <div className="empty-state">
         <p>No entries yet. Add one above to get started!</p>
@@ -11,7 +11,7 @@ function MovieList({ movies, onDelete }) {
 
   return (
     <ul className="task-list">
-      {tasks.map((movie) => (
+      {movies.map((movie) => (
         <MovieItem key={movie._id} movie={movie} onDelete={onDelete}
         />
       ))}

@@ -1,11 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
-function MovieForm({ onAdd }) {
+function MovieForm({ onAdd, prefillTitle }) {
 
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
-  const intervalRef = useRef(null);
+
+    useEffect(() => {
+    if (prefillTitle) {
+      setTitle(prefillTitle);
+    }
+  }, [prefillTitle]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +34,7 @@ function MovieForm({ onAdd }) {
       <input
         className="task-input"
         type="text"
-        placeholder="Short review"
+        placeholder="Review"
         value={review}
         onChange={(e) => setReview(e.target.value)}
       />

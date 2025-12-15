@@ -7,11 +7,13 @@ import {
 } from "./api/movies";
 import MovieForm from "./components/MovieForm";
 import MovieList from "./components/MovieList";
+import OmdbSearch from "./components/OmdbSearch";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedTitleFromSearch, setSelectedTitleFromSearch] = useState("");
 
   useEffect(() => {
     loadMovies();
@@ -31,9 +33,9 @@ function App() {
     }
   };
 
-  const handleAddMovie = async (movieDatae) => {
+  const handleAddMovie = async (movieData) => {
     try {
-      const movie = await createMovie(movieDatae);
+      const movie = await createMovie(movieData);
       setMovies((prev) => [movie, ...prev]);
      } catch (err) {
       console.error("Error creating movie:", err);
@@ -77,14 +79,19 @@ function App() {
       <main className="main-content">
         <section className="task-section">
           <h2>Add a movie or show</h2>
-          <MovieForm onAdd={handleAddMovie} />
+          <MovieForm onAdd={handleAddMovie} prefillTitle={selectedTitleFromSearch} />
+          <hr style={{ margin: "1.5rem 0" }} />
+
+          <OmdbSearch onPickTitle={(title) => setSelectedTitleFromSearch(title)} />
+
+          <hr style={{ margin: "1.5rem 0" }} />
           <MovieList movies={movies} onDelete={handleDeleteMovie} />
         </section>
 
         <section className="timer-section">
           <h2>About app</h2>
           <p>
-            Movie and TV show journal. You can log what
+            Movie and TV show journal. Log what
             you’ve watched, write a review, and give it a rating
           </p>
         </section>

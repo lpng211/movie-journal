@@ -49,3 +49,16 @@ export async function deleteMovie(id) {
 
   return res.json();
 }
+
+export async function searchByTitle(title) {
+  const res = await fetch(
+    `${API_BASE_URL}/api/movies/search?title=${encodeURIComponent(title)}`
+  );
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || "Search failed");
+  }
+
+  return res.json();
+}
