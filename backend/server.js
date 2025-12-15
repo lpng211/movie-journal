@@ -8,7 +8,7 @@ const moviesRouter = require("./routes/movies");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());          
+app.use(cors({ origin: process.env.CLIENT_ORIGIN }));       
 app.use(express.json());  
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -26,7 +26,3 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/movies", moviesRouter);
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
