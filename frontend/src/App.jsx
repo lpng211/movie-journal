@@ -81,7 +81,7 @@ function App() {
       <main className="main-content">
         <section className="journal-section">
           <h2>Add a movie or show</h2>
-          <MovieForm onAdd={handleAddMovie} prefillTitle={selectedTitleFromSearch} />
+          <MovieForm onAdd={handleAddMovie} autofillTitle={selectedTitleFromSearch} />
           <hr style={{ margin: "1.5rem 0" }} />
 
           <OmdbSearch onPickTitle={(title) => setSelectedTitleFromSearch(title)} />

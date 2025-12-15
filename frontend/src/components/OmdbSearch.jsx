@@ -25,7 +25,7 @@ function OmdbSearch({ onPickTitle }) {
     }
   };
 
-  //Sends title to App so MovieForm prefills
+  //Sends title to App so MovieForm autofills
   const handleUseTitle = () => {
     if (result && result.title) {
       onPickTitle(result.title);

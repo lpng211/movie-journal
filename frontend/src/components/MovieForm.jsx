@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function MovieForm({ onAdd, prefillTitle }) {
+function MovieForm({ onAdd, autofillTitle }) {
 
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
@@ -8,10 +8,10 @@ function MovieForm({ onAdd, prefillTitle }) {
 
     //Picks a title from OMDb fills it into the form
     useEffect(() => {
-    if (prefillTitle) {
-      setTitle(prefillTitle);
+    if (autofillTitle) {
+      setTitle(autofillTitle);
     }
-  }, [prefillTitle]);
+  }, [autofillTitle]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
